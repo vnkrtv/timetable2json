@@ -1,10 +1,5 @@
-import pandas as pd
-"""
-Упр. инф. безоп.: (асс.) лекция-2.2
-ауд. 136
-гр. * 7353; 7354
-"""
 COMP_CLASSES = ['122', '103']
+
 
 class Lesson:
 
@@ -17,7 +12,12 @@ class Lesson:
     _groups = []
 
     def __init__(self, pair_str):
-        self._entry_value = pair_str
+        self = Lesson.cell_parser(pair_str)
+
+    @staticmethod
+    def cell_parser(pair_str):
+        lesson = Lesson(pair_str)
+        lesson._entry_value = pair_str
 
         if len(pair_str.split(':')) < 2:
             raise Exception('Incorrect cell format')
@@ -25,12 +25,14 @@ class Lesson:
             return
 
         buf_list = pair_str.split('\n')
-        self._name, buf = buf_list[0].split(': ')
-        self._type, self._num = buf.split('-')
-        self._classroom = buf_list[1].split(' ')[1]
-        self._in_comp_class = self._classroom in COMP_CLASSES
+        lesson._name, buf = buf_list[0].split(': ')
+        lesson._type, lesson._num = buf.split('-')
+        lesson._classroom = buf_list[1].split(' ')[1]
+        lesson._in_comp_class = lesson._classroom in COMP_CLASSES
         tmp = buf_list[2].split('гр. ')[1]
-        self._groups = tmp.split('; ')
+        lesson._groups = tmp.split('; ')
+
+        return lesson
 
     def __str__(self):
         return self._entry_value
