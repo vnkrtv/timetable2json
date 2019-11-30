@@ -1,3 +1,6 @@
+import pandas as pd
+
+
 COMP_CLASSES = ['122', '103']
 
 
@@ -16,23 +19,22 @@ class Lesson:
 
     @staticmethod
     def cell_parser(pair_str):
-        lesson = Lesson(pair_str)
-        lesson._entry_value = pair_str
+        Lesson._entry_value = pair_str
 
         if len(pair_str.split(':')) < 2:
-            raise Exception('Incorrect cell format')
+            raise ValueError('Incorrect cell format')
         elif len(pair_str.split(':')) > 2:
             return
 
         buf_list = pair_str.split('\n')
-        lesson._name, buf = buf_list[0].split(': ')
-        lesson._type, lesson._num = buf.split('-')
-        lesson._classroom = buf_list[1].split(' ')[1]
-        lesson._in_comp_class = lesson._classroom in COMP_CLASSES
+        Lesson._name, buf = buf_list[0].split(': ')
+        Lesson._type, Lesson._num = buf.split('-')
+        Lesson._classroom = buf_list[1].split(' ')[1]
+        Lesson._in_comp_class = Lesson._classroom in COMP_CLASSES
         tmp = buf_list[2].split('гр. ')[1]
-        lesson._groups = tmp.split('; ')
+        Lesson._groups = tmp.split('; ')
 
-        return lesson
+        return Lesson
 
     def __str__(self):
         return self._entry_value

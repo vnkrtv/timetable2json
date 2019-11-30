@@ -16,6 +16,11 @@ class TestLesson(unittest.TestCase):
     in_comp_classes = [True, False, False]
     groups = [['7333'], ['2780.2'], []]
 
+    def test_init_raises(self):
+        with self.assertRaises(ValueError):
+            entry_value = 'incorrect format str'
+            Lesson(entry_value)
+
     def test_entry_value(self):
         for entry_value in self.entry_values:
             lesson = Lesson(entry_value)
