@@ -19,36 +19,36 @@ class TestLesson(unittest.TestCase):
     def test_init_raises(self):
         with self.assertRaises(ValueError):
             entry_value = 'incorrect format str'
-            Lesson(entry_value)
+            Lesson.cell_parser(entry_value)
 
     def test_entry_value(self):
         for entry_value in self.entry_values:
-            lesson = Lesson(entry_value)
+            lesson = Lesson.cell_parser(entry_value)
             self.assertEqual(entry_value, lesson.get_entry_value())
 
     def test_names(self):
         for (name, entry_value) in zip(self.names, self.entry_values):
-            lesson = Lesson(entry_value)
+            lesson = Lesson.cell_parser(entry_value)
             self.assertEqual(name, lesson.get_name())
 
     def test_nums(self):
         for (num, entry_value) in zip(self.nums, self.entry_values):
-            lesson = Lesson(entry_value)
+            lesson = Lesson.cell_parser(entry_value)
             self.assertEqual(num, lesson.get_lesson_num())
 
     def test_classrooms(self):
         for (classroom, entry_value) in zip(self.classrooms, self.entry_values):
-            lesson = Lesson(entry_value)
+            lesson = Lesson.cell_parser(entry_value)
             self.assertEqual(classroom, lesson.get_classroom())
 
     def test_comp_classes_flag(self):
         for (flag, entry_value) in zip(self.in_comp_classes, self.entry_values):
-            lesson = Lesson(entry_value)
+            lesson = Lesson.cell_parser(entry_value)
             self.assertEqual(flag, lesson.is_in_computer_class())
 
     def test_groups(self):
         for (groups, entry_value) in zip(self.groups, self.entry_values):
-            lesson = Lesson(entry_value)
+            lesson = Lesson.cell_parser(entry_value)
             self.assertEqual(groups, lesson.get_groups())
 
 
