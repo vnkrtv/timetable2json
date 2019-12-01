@@ -2,5 +2,5 @@ venv
 .ipynb_checkpoints
 .idea
 *.pyc
-*.ipynd
+DDZ.ipynb
 data.xlsx

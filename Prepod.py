@@ -39,8 +39,19 @@ class Prepod:
             for i, date in enumerate(dates):
                 pairs_df = prepod._df[col_num][selected_rows[i]:selected_rows[i + 1] - 1]
                 pairs = pairs_df.replace(pd.np.nan, '')
-                Prepod._pairs[date] = [Lesson.cell_parser(pair) for pair in pairs]
+                prepod._pairs[date] = [Lesson.cell_parser(pair) for pair in pairs]
 
+        for date in prepod._pairs:
+            if len(prepod._pairs[date]) == 5:
+                pairs = prepod._pairs[date]
+                pairs[2] = pairs[2] if pairs[2].get_entry_value() else pairs[3]
+                pairs[3] = pairs[4]
+                prepod._pairs[date] = pairs[:-1]
+            if len(prepod._pairs[date]) == 6:
+                pairs = prepod._pairs[date]
+                pairs[2] = pairs[2] if pairs[2].get_entry_value() else pairs[3]
+                pairs[3] = pairs[4] if pairs[4].get_entry_value() else pairs[5]
+                prepod._pairs[date] = pairs[:-2]
         return prepod
 
     def get_pairs_dict(self):
