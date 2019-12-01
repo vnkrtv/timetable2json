@@ -1,10 +1,8 @@
-import pandas as pd
-
-
+# pylint: disable=missing-docstring, invalid-name, protected-access
 COMP_CLASSES = ['122', '103']
 
 
-class Lesson(object):
+class Lesson:
 
     _name = ''
     _type = ''
@@ -19,18 +17,21 @@ class Lesson(object):
         lesson = Lesson()
         lesson._entry_value = pair_str
 
-        if len(pair_str.split(':')) < 2:
-            raise ValueError('Incorrect cell format')
-        elif len(pair_str.split(':')) > 2:
+        if len(pair_str.split(':')) != 2:
             return lesson
 
+        lesson._name, buf = pair_str.split(':')
+        buf = buf.split('-')
+        buf_type, buf_num = buf[0], buf[1]
+        lesson._type = buf_type.split('\n')[-1].split(' ')[-1]
+        lesson._num = buf_num.split('\n')[0].split(' ')[0]
+
         buf_list = pair_str.split('\n')
-        lesson._name, buf = buf_list[0].split(': ')
-        lesson._type, lesson._num = buf.split('-')
-        lesson._classroom = buf_list[1].split(' ')[1]
+        lesson._classroom = buf_list[1].split(' ')[-1]
         lesson._in_comp_class = lesson._classroom in COMP_CLASSES
-        tmp = buf_list[2].split('гр. ')[1]
-        lesson._groups = tmp.split('; ')
+
+        buf = buf_list[2].split('гр. ')[1]
+        lesson._groups = buf.split('; ')
 
         return lesson
 
