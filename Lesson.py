@@ -4,7 +4,7 @@ import pandas as pd
 COMP_CLASSES = ['122', '103']
 
 
-class Lesson:
+class Lesson(object):
 
     _name = ''
     _type = ''
@@ -14,27 +14,25 @@ class Lesson:
     _in_comp_class = False
     _groups = []
 
-    def __init__(self, pair_str):
-        self = Lesson.cell_parser(pair_str)
-
     @staticmethod
     def cell_parser(pair_str):
-        Lesson._entry_value = pair_str
+        lesson = Lesson()
+        lesson._entry_value = pair_str
 
         if len(pair_str.split(':')) < 2:
             raise ValueError('Incorrect cell format')
         elif len(pair_str.split(':')) > 2:
-            return
+            return lesson
 
         buf_list = pair_str.split('\n')
-        Lesson._name, buf = buf_list[0].split(': ')
-        Lesson._type, Lesson._num = buf.split('-')
-        Lesson._classroom = buf_list[1].split(' ')[1]
-        Lesson._in_comp_class = Lesson._classroom in COMP_CLASSES
+        lesson._name, buf = buf_list[0].split(': ')
+        lesson._type, lesson._num = buf.split('-')
+        lesson._classroom = buf_list[1].split(' ')[1]
+        lesson._in_comp_class = lesson._classroom in COMP_CLASSES
         tmp = buf_list[2].split('гр. ')[1]
-        Lesson._groups = tmp.split('; ')
+        lesson._groups = tmp.split('; ')
 
-        return Lesson
+        return lesson
 
     def __str__(self):
         return self._entry_value
