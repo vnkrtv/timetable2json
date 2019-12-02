@@ -47,11 +47,11 @@ class Prepod:
                 pairs[2] = pairs[2] if pairs[2].get_entry_value() else pairs[3]
                 pairs[3] = pairs[4]
                 prepod._pairs[date] = pairs[:-1]
-            if len(prepod._pairs[date]) == 6:
+            if len(prepod._pairs[date]) > 5:
                 pairs = prepod._pairs[date]
                 pairs[2] = pairs[2] if pairs[2].get_entry_value() else pairs[3]
                 pairs[3] = pairs[4] if pairs[4].get_entry_value() else pairs[5]
-                prepod._pairs[date] = pairs[:-2]
+                prepod._pairs[date] = pairs[:4]
         return prepod
 
     def get_pairs_dict(self):
