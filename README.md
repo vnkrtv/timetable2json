@@ -1,12 +1,12 @@
 # TimetableExcelParser
 
-## Description:
+## Description
 
 Parses timetable of classes(input excel file) in a json file:  
     {  
         'date'(str): {  
             1: [   
-                [<prepod_name>(str), [<groups>](list of str), <classroom>(str), <is_computer_class>(bool)],  
+                [<prepod_name>(str), \[\<groups>\](list of str), <classroom>(str), <is_computer_class>(bool)],  
                 ...
                 ]  
             2: [ ... ],  
@@ -23,6 +23,7 @@ optional arguments:
   -o OUTPUT, --output OUTPUT - output json file  
 
 (c) LeadNess 2019
+    
 
 ## Usage
 
