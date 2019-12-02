@@ -1,7 +1,7 @@
 # pylint: disable=missing-docstring, line-too-long, invalid-name
 import unittest
-from Prepod import Prepod
+from src.JSONSerializer import JSONSerializer
 
 
-class TestPrepod(unittest.TestCase):
+class TestJSONSerializer(unittest.TestCase):
     pass

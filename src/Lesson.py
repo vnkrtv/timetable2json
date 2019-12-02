@@ -27,15 +27,18 @@ class Lesson:
         lesson._num = buf_num.split('\n')[0].split(' ')[0]
 
         buf_list = pair_str.split('\n')
-        lesson._classroom = buf_list[1].split(' ')[-1]
+        lesson._classroom = buf_list[-2].split(' ')[-1]
         lesson._in_comp_class = lesson._classroom in COMP_CLASSES
 
-        buf = buf_list[2].split('гр. ')[1]
+        buf = buf_list[-1].split('гр. ')[1]
         lesson._groups = buf.split('; ')
 
         return lesson
 
-    def __str__(self):
+    def to_list(self, prepod_name):
+        return [prepod_name, self._groups, self._classroom, self._in_comp_class] if self._name else []
+
+    def __repr__(self):
         return self._entry_value
 
     def get_entry_value(self):

@@ -1,6 +1,6 @@
 # pylint: disable=missing-docstring, protected-access, invalid-name, broad-except
 import pandas as pd
-from Lesson import Lesson
+from src.Lesson import Lesson
 
 
 class Prepod:
@@ -10,7 +10,7 @@ class Prepod:
     _pairs = {}
 
     @staticmethod
-    def prepod_df_parser(prepod_df):
+    def df_parser(prepod_df):
         prepod = Prepod()
         prepod._df = prepod_df
 
@@ -56,3 +56,6 @@ class Prepod:
 
     def get_pairs_dict(self):
         return self._pairs
+
+    def get_dates_list(self):
+        return self._dates

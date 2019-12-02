@@ -1,6 +1,6 @@
 # pylint: disable=missing-docstring, line-too-long, invalid-name
 import unittest
-from Lesson import Lesson
+from src.Lesson import Lesson
 
 
 class TestLesson(unittest.TestCase):

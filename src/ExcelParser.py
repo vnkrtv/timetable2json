@@ -4,8 +4,8 @@ import pandas as pd
 
 class ExcelParser:
 
-    def __init__(self, file_path):
-        self._xl = pd.ExcelFile(file_path)
+    def __init__(self, excel_file):
+        self._xl = pd.ExcelFile(excel_file)
         self._prepods_list = self._xl.sheet_names
 
     def get_prepods_list(self):
