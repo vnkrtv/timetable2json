@@ -31,7 +31,8 @@ class JSONSerializer:
         for prepod_name in obj._names_list:
             for date in obj._prepods_pairs_dict[prepod_name]:
                 for i, pair in enumerate(obj._prepods_pairs_dict[prepod_name][date]):
-                    obj._date_dict[date][i+1].append(pair.to_list(prepod_name))
+                    pair_list = pair.to_list(prepod_name)
+                    obj._date_dict[date][i+1].append(pair_list) if pair_list else 0
         return obj
 
     def dump(self, file):
