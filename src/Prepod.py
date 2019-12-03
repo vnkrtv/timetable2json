@@ -1,9 +1,25 @@
-# pylint: disable=missing-docstring, protected-access, invalid-name
+# pylint: disable=missing-docstring, bare-except, protected-access, invalid-name
 import pandas as pd
 from src.Lesson import Lesson
 
 
 class Prepod:
+    """
+    Class representing the essence of a institute lecturer
+
+    Fields:
+    _df - pandas DataFrame from excel sheet list with lecturer's study pairs
+    _dates - all dates from excel sheet list with lecturer's study pairs
+    _pairs = dict with all lecturer's study pairs:
+    {
+        'date' [
+            <Lesson_object>,
+            ...
+            ]
+        'another_date': [ ... ],
+        ...
+    }
+    """
 
     _df = pd.DataFrame()
     _dates = []
@@ -11,6 +27,12 @@ class Prepod:
 
     @staticmethod
     def df_parser(prepod_df):
+        """
+        Parses input pandas DataFrame from excel sheet list
+        with lecturer's study pairs and return Prepod object
+        :param prepod_df: pandas DataFrame (pd.DataFrame)
+        :return: Prepod object (Prepod)
+        """
         prepod = Prepod()
         prepod._df = prepod_df
 
@@ -54,8 +76,24 @@ class Prepod:
                 prepod._pairs[date] = pairs[:4]
         return prepod
 
-    def get_pairs_dict(self):
+    def get_pairs_dict(self) -> dict:
+        """
+        Return dict with all lecturer's study pairs:
+        {
+            'date' [
+                <Lesson_object>,
+                ...
+                ]
+            'another_date': [ ... ],
+            ...
+        }
+        :return: dict with all lecturer's study pairs (dict)
+        """
         return self._pairs
 
-    def get_dates_list(self):
+    def get_dates_list(self) -> list:
+        """
+        Return all dates from excel sheet list with lecturer's study pairs
+        :return: list of dates (list)
+        """
         return self._dates

@@ -4,4 +4,5 @@ from src.Prepod import Prepod
 
 
 class TestPrepod(unittest.TestCase):
-    pass
+
+    def test_

@@ -4,7 +4,7 @@ COMP_CLASSES = ['122', '103']
 
 class Lesson:
     """
-    A class representing the essence of a study pair
+    Class representing the essence of a study pair
     """
 
     _name = ''
