@@ -16,5 +16,5 @@ setup(
         'xlrd',
         'pandas'
     ],
-    long_description=open(join(dirname(__file__), 'README.txt')).read(),
+    long_description=open(join(dirname(__file__), 'README.md')).read(),
 )
