@@ -1,6 +1,6 @@
 # pylint: disable=missing-docstring, line-too-long, invalid-name
 import unittest
-from src.Lesson import Lesson
+from timetable2json.Lesson import Lesson
 
 
 class TestLesson(unittest.TestCase):

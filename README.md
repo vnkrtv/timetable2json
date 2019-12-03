@@ -30,30 +30,30 @@ Optional arguments:
 
 - ````git clone https://github.com/LeadNess/TimetableExcelParser.git````
 - ````cd TimetableExcelParser````
-- ````./builder```` - create venv and install requirements
-- ````source ./venv/bin/activate````
-- ````python timetable2json.py -i <input_excel> -o <output_json> [-ea]````
+- ```python3 setup.py install```
+- ````timetable2json -i <input_excel> -o <output_json> [-ea]````
 
 ## Tests
+- **pylint**
+```sh
+ Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+```
+- **nosetests**
+```sh
+Name                               Stmts   Miss  Cover
+------------------------------------------------------
+tests/test_lesson.py                  43      0   100%
+tests/test_prepod.py                  16      0   100%
+timetable2json/ExcelParser.py         11     11     0%
+timetable2json/JSONSerializer.py      31     31     0%
+timetable2json/Lesson.py              43      0   100%
+timetable2json/Prepod.py              46      4    91%
+timetable2json/__init__.py             1      0   100%
+timetable2json/timetable2json.py      15     15     0%
+------------------------------------------------------
+TOTAL                                206     61    70%
+----------------------------------------------------------------------
+Ran 10 tests in 0.664s
 
-**ExcelParser.py**
-- pylint
-```sh
- Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
-```
-**Lesson.py**
-- pylint
-```sh
- Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
-```
--
-**Prepod.py**
-- pylint
-```sh
- Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
-```
-**JSONSerializer.py**
-- pylint
-```sh
- Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+OK
 ```

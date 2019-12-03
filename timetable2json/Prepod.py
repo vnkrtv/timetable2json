@@ -1,6 +1,6 @@
 # pylint: disable=missing-docstring, bare-except, protected-access, invalid-name
 import pandas as pd
-from src.Lesson import Lesson
+from timetable2json.Lesson import Lesson
 
 
 class Prepod:

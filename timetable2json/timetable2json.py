@@ -1,6 +1,7 @@
+# pylint: disable=missing-docstring, line-too-long
 import sys
 import argparse
-from src.JSONSerializer import JSONSerializer
+from timetable2json.JSONSerializer import JSONSerializer
 
 
 def create_parser():

@@ -1,8 +1,8 @@
 # pylint: disable=missing-docstring, line-too-long, invalid-name
 import unittest
 import pandas as pd
-from src.Lesson import Lesson
-from src.Prepod import Prepod
+from timetable2json.Lesson import Lesson
+from timetable2json.Prepod import Prepod
 
 
 class TestPrepod(unittest.TestCase):
@@ -76,4 +76,3 @@ class TestPrepod(unittest.TestCase):
         for (l, df) in zip(lists, self.init_dataframes):
             prepod = Prepod.df_parser(df)
             self.assertEqual(l, prepod.get_dates_list())
-

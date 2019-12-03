@@ -1,7 +1,7 @@
-# pylint: disable=missing-docstring, invalid-name
+# pylint: disable=missing-docstring, invalid-name, protected-access
 import json
-from src.ExcelParser import ExcelParser
-from src.Prepod import Prepod
+from timetable2json.ExcelParser import ExcelParser
+from timetable2json.Prepod import Prepod
 
 
 class JSONSerializer:
@@ -32,9 +32,10 @@ class JSONSerializer:
             for date in obj._prepods_pairs_dict[prepod_name]:
                 for i, pair in enumerate(obj._prepods_pairs_dict[prepod_name][date]):
                     pair_list = pair.to_list(prepod_name)
-                    obj._date_dict[date][i+1].append(pair_list) if pair_list else 0
+                    if pair_list:
+                        obj._date_dict[date][i+1].append(pair_list)
         return obj
 
     def dump(self, file, ensure_ascii):
-        with open(file, 'w') as file:
-            file.write(json.dumps(self._date_dict, indent=4, ensure_ascii=ensure_ascii))
+        with open(file, 'w') as out:
+            out.write(json.dumps(self._date_dict, indent=4, ensure_ascii=ensure_ascii))
