@@ -43,6 +43,9 @@ class Lesson:
 
         return lesson
 
+    def __eq__(self, other):
+        return self._entry_value == other._entry_value if isinstance(other, Lesson) else False
+
     def to_list(self, prepod_name) -> list:
         """
         Represents a study pair as a list

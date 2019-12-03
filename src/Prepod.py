@@ -35,6 +35,8 @@ class Prepod:
         """
         prepod = Prepod()
         prepod._df = prepod_df
+        prepod._dates = []
+        prepod._pairs = {}
 
         months = ['сентября', 'октября', 'ноября',
                   'декабря', 'января', 'февраля',
