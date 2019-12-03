@@ -1,8 +1,11 @@
-# pylint: disable=missing-docstring, invalid-name, protected-access
+# pylint: disable=missing-docstring, invalid-name, protected-access, line-too-long
 COMP_CLASSES = ['122', '103']
 
 
 class Lesson:
+    """
+    A class representing the essence of a study pair
+    """
 
     _name = ''
     _type = ''
@@ -14,6 +17,11 @@ class Lesson:
 
     @staticmethod
     def cell_parser(pair_str):
+        """
+        Parses input cell value from excel table and return Lesson object
+        :param pair_str: cell value from excel table (str)
+        :return: Lesson object (Lesson)
+        """
         lesson = Lesson()
         lesson._entry_value = pair_str
 
@@ -35,29 +43,31 @@ class Lesson:
 
         return lesson
 
-    def to_list(self, prepod_name):
+    def to_list(self, prepod_name) -> list:
+        """
+        Represents a study pair as a list
+        :param prepod_name: prepod_name (str)
+        :return: list representation of study pair (list)
+        """
         return [prepod_name, self._groups, self._classroom, self._in_comp_class] if self._name else []
 
-    def __repr__(self):
+    def get_entry_value(self) -> str:
         return self._entry_value
 
-    def get_entry_value(self):
-        return self._entry_value
-
-    def get_name(self):
+    def get_name(self) -> str:
         return self._name
 
-    def get_type(self):
+    def get_type(self) -> str:
         return self._type
 
-    def get_lesson_num(self):
+    def get_lesson_num(self) -> str:
         return self._num
 
-    def is_in_computer_class(self):
+    def is_in_computer_class(self) -> bool:
         return self._in_comp_class
 
-    def get_classroom(self):
+    def get_classroom(self) -> str:
         return self._classroom
 
-    def get_groups(self):
+    def get_groups(self) -> list:
         return self._groups

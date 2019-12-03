@@ -36,4 +36,24 @@ Optional arguments:
 
 ## Tests
 
-Coming soon
+**ExcelParser.py**
+- pylint
+```sh
+ Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+```
+**Lesson.py**
+- pylint
+```sh
+ Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+```
+-
+**Prepod.py**
+- pylint
+```sh
+ Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+```
+**JSONSerializer.py**
+- pylint
+```sh
+ Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+```

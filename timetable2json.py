@@ -42,10 +42,14 @@ def create_parser():
     return parser
 
 
-if __name__ == '__main__':
+def main():
     parser = create_parser()
     args = parser.parse_args(sys.argv[1:])
     JSONSerializer.serialize(excel_file=args.input.name).dump(
         file=args.output,
-        ensure_ascii=False if args.ensure_ascii else True
+        ensure_ascii=not args.ensure_ascii
     )
+
+
+if __name__ == '__main__':
+    main()

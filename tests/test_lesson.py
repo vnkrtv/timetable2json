@@ -9,14 +9,16 @@ class TestLesson(unittest.TestCase):
                    '2780: ПЗ-6\nауд. КВАНТ-КК\nгр. 2780.2',
                    'Упр. инф. безоп.: (асс.) лекция-2.2\nауд. 136\nгр. * 7353; 7354\n2813: ПЗ-6.2\nауд. 20_УНЦ\nгр. 2813.1']
 
-    def test_init_raises(self):
-        init_value = 'incorrect format str'
-        self.assertRaises(ValueError, Lesson.cell_parser, init_value)
-
     def test_entry_value(self):
         for init_value in self.init_values:
             lesson = Lesson.cell_parser(init_value)
             self.assertEqual(init_value, lesson.get_entry_value())
+
+    def test_to_list(self):
+        lists = [['Prepod name', ['7333'], '122', True], ['Prepod name', ['2780.2'], 'КВАНТ-КК', False], []]
+        for (l, init_value) in zip(lists, self.init_values):
+            lesson = Lesson.cell_parser(init_value)
+            self.assertEqual(l, lesson.to_list(prepod_name='Prepod name'))
 
     def test_types(self):
         types = ['ПЗ', 'ПЗ', '']
