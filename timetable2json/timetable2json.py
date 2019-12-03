@@ -32,10 +32,10 @@ def create_parser():
     parser.add_argument(
         '-o', '--output',
         help='output json file',
-        required=True
+        default=sys.stdout
     )
     parser.add_argument(
-        '-ea', '--ensure-ascii',
+        '-v', '--ensure-ascii',
         help=r'ensure ascii code instead unicode ("09 января" instead "09 \u044f\u043d\u0432\u0430\u0440\u044f")',
         action='store_const',
         const=True

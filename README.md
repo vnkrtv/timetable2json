@@ -2,20 +2,6 @@
 
 ## Description
 
-```csv
-понедельник;09 сентября;16 сентября
-	 09:00 - 10:35;Упр. инф. безоп.: лаб.раб-1 ауд. 20_УНЦ гр. 7353	Техн.принятия решений:  ПЗ-1 ауд. 209 гр. 7353
-	 10:50 - 12:25;Упр. инф. безоп.: ПЗ-1 ауд. 20_УНЦ гр. 7353	Упр. инф. безоп.: ПЗ-2 ауд. 20_УНЦ гр. 7353
-	 12:40 - 14:15		
-	 15:15 - 16:50	Безопасность ОС: ПЗ-15 ауд. 122 гр. 7333	Безопасность ОС: ПЗ-16 ауд. 122 гр. 7333
-вторник		10 сентября	17 сентября
-	 09:00 - 10:35		
-	 10:50 - 12:25		
-	 12:40 - 14:15		
-	 15:15 - 16:50		
-
-```
-
 Parses timetable of classes(input excel file) in a json file:  
 ````javascript
 {
@@ -36,8 +22,8 @@ Parses timetable of classes(input excel file) in a json file:
 Optional arguments:  
     
   ````-i INPUT, --input INPUT```` - input excel file  
-  ````-o OUTPUT, --output OUTPUT```` - output json file  
-  ````-ea, --ensure-ascii```` - ensure ascii code instead unicode ("09 января" instead "09 \u044f\u043d\u0432\u0430\u0440\u044f")  
+  ````-o OUTPUT, --output OUTPUT```` - output json file (default - stdout)  
+  ````-e, --ensure-ascii```` - ensure ascii code instead unicode ("09 января" instead "09 \u044f\u043d\u0432\u0430\u0440\u044f")  
     
 
 ## Usage
