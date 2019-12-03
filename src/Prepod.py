@@ -1,4 +1,4 @@
-# pylint: disable=missing-docstring, protected-access, invalid-name, broad-except
+# pylint: disable=missing-docstring, protected-access, invalid-name
 import pandas as pd
 from src.Lesson import Lesson
 
@@ -30,7 +30,7 @@ class Prepod:
                     if cell.split(' ')[1] in months:
                         dates.append(cell)
                         selected_rows.append(row_num + 1)
-                except Exception:
+                except:
                     pass
 
             prepod._dates += dates

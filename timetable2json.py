@@ -33,10 +33,19 @@ def create_parser():
         help='output json file',
         required=True
     )
+    parser.add_argument(
+        '-ea', '--ensure-ascii',
+        help=r'ensure ascii code instead unicode ("09 января" instead "09 \u044f\u043d\u0432\u0430\u0440\u044f")',
+        action='store_const',
+        const=False
+    )
     return parser
 
 
 if __name__ == '__main__':
     parser = create_parser()
     args = parser.parse_args(sys.argv[1:])
-    JSONSerializer.serialize(excel_file=args.input.name).dump(file=args.output)
+    JSONSerializer.serialize(excel_file=args.input.name).dump(
+        file=args.output,
+        ensure_ascii=False if args.ensure_ascii else True
+    )

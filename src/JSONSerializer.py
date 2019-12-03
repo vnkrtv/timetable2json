@@ -1,5 +1,6 @@
 # pylint: disable=missing-docstring, invalid-name
 import json
+import copy
 from src.ExcelParser import ExcelParser
 from src.Prepod import Prepod
 
@@ -22,7 +23,7 @@ class JSONSerializer:
         for prepod_name in obj._names_list:
             df = obj._xl_file.get_prepod_df(prepod_name)
             prepod = Prepod.df_parser(df)
-            obj._prepods_pairs_dict[prepod_name] = prepod.get_pairs_dict()
+            obj._prepods_pairs_dict[prepod_name] = copy.deepcopy(prepod.get_pairs_dict())
             obj._dates += prepod.get_dates_list()
 
         for date in set(obj._dates):
@@ -35,6 +36,6 @@ class JSONSerializer:
                     obj._date_dict[date][i+1].append(pair_list) if pair_list else 0
         return obj
 
-    def dump(self, file):
+    def dump(self, file, ensure_ascii):
         with open(file, 'w') as file:
-            json.dump(self._date_dict, file)
+            file.write(json.dumps(self._date_dict, indent=4, ensure_ascii=ensure_ascii))
