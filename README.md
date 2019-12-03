@@ -3,26 +3,27 @@
 ## Description
 
 Parses timetable of classes(input excel file) in a json file:  
-    {  
-        'date'(str): {  
-            1: [   
-                [<prepod_name>(str), \[\<groups>\](list of str), \<classroom>(str), <is_computer_class>(bool)],
-                ...
-                ]  
-            2: [ ... ],  
-            3: [ ... ],  
-            4: [ ... ]  
-        },  
-        'another date': { ... },  
-        ...  
-    }
+````javascript
+{
+    "date"(str): {
+        "1": [
+            [<prepod_name>(str), \[\<groups>\](list of str), \<classroom>(str), <is_computer_class>(bool)],
+            ...
+            ]  
+        "2": [ ... ],  
+        "3": [ ... ],  
+        "4": [ ... ]  
+    },  
+    "another date": { ... },  
+    ...  
+}
+````
     
-optional arguments:  
+Optional arguments:  
     
-  -i INPUT, --input INPUT - input excel file  
-  -o OUTPUT, --output OUTPUT - output json file  
-
-(c) LeadNess 2019
+  ````-i INPUT, --input INPUT```` - input excel file  
+  ````-o OUTPUT, --output OUTPUT```` - output json file  
+  ````-ea, --ensure-ascii```` - ensure ascii code instead unicode ("09 января" instead "09 \u044f\u043d\u0432\u0430\u0440\u044f")  
     
 
 ## Usage
@@ -31,4 +32,8 @@ optional arguments:
 - ````cd TimetableExcelParser````
 - ````./builder```` - create venv and install requirements
 - ````source ./venv/bin/activate````
-- ````python timetable2json.py -i <input_excel> -o <output_json>````
+- ````python timetable2json.py -i <input_excel> -o <output_json> [-ea]````
+
+## Tests
+
+Coming soon
