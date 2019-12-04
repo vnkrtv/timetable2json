@@ -66,17 +66,26 @@ class Prepod:
                 prepod._pairs[date] = [Lesson.cell_parser(pair) for pair in pairs]
 
         for date in prepod._pairs:
-            if len(prepod._pairs[date]) == 5:
-                pairs = prepod._pairs[date]
-                pairs[2] = pairs[2] if pairs[2].get_entry_value() else pairs[3]
-                pairs[3] = pairs[4]
-                prepod._pairs[date] = pairs[:-1]
-            if len(prepod._pairs[date]) > 5:
-                pairs = prepod._pairs[date]
-                pairs[2] = pairs[2] if pairs[2].get_entry_value() else pairs[3]
-                pairs[3] = pairs[4] if pairs[4].get_entry_value() else pairs[5]
-                prepod._pairs[date] = pairs[:4]
+            prepod._pairs[date] = Prepod.parse_pairs(prepod._pairs[date])
         return prepod
+
+    @staticmethod
+    def parse_pairs(lessons_list) -> list:
+        """
+        Get list of Lessons and brings it to a common format
+        :param lessons_list: list of Lessons
+        :return: list of Lessons
+        """
+        pairs = lessons_list[:]
+        if len(pairs) == 5:
+            pairs[2] = pairs[2] if pairs[2].get_entry_value() else pairs[3]
+            pairs[3] = pairs[4]
+            pairs = pairs[:-1]
+        if len(pairs) > 5:
+            pairs[2] = pairs[2] if pairs[2].get_entry_value() else pairs[3]
+            pairs[3] = pairs[4] if pairs[4].get_entry_value() else pairs[5]
+            pairs = pairs[:4]
+        return pairs
 
     def get_pairs_dict(self) -> dict:
         """

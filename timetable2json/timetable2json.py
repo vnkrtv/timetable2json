@@ -35,7 +35,12 @@ def create_parser():
         default=sys.stdout
     )
     parser.add_argument(
-        '-v', '--ensure-ascii',
+        '-l', '--logs',
+        help='file for logging skipped cells',
+        default=sys.stdout
+    )
+    parser.add_argument(
+        '-e', '--ensure-ascii',
         help=r'ensure ascii code instead unicode ("09 января" instead "09 \u044f\u043d\u0432\u0430\u0440\u044f")',
         action='store_const',
         const=True
@@ -46,7 +51,7 @@ def create_parser():
 def main():
     parser = create_parser()
     args = parser.parse_args(sys.argv[1:])
-    JSONSerializer.serialize(excel_file=args.input.name).dump(
+    JSONSerializer.serialize(excel_file=args.input.name, log_file=args.logs.name).dump(
         file=args.output,
         ensure_ascii=not args.ensure_ascii
     )

@@ -52,7 +52,7 @@ class Lesson:
         :param prepod_name: prepod_name (str)
         :return: list representation of study pair (list)
         """
-        return [prepod_name, self._groups, self._classroom, self._in_comp_class] if self._name else []
+        return [prepod_name, self._groups, self._classroom, self._in_comp_class] if self._entry_value else []
 
     def get_entry_value(self) -> str:
         return self._entry_value

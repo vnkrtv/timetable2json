@@ -2,7 +2,7 @@
 
 ## Description
 
-Parses timetable of classes(input excel file) in a json file:  
+Parses timetable of classes(input excel file) in a json file:
 ````javascript
 {
     "date"(str): {
@@ -23,15 +23,84 @@ Optional arguments:
     
   ````-i INPUT, --input INPUT```` - input excel file  
   ````-o OUTPUT, --output OUTPUT```` - output json file (default - stdout)  
+  ````-l, --logs```` - file for logging skipped cells (default - stdout)  
   ````-e, --ensure-ascii```` - ensure ascii code instead unicode ("09 января" instead "09 \u044f\u043d\u0432\u0430\u0440\u044f")  
-    
+
+## Example
+
+We have an excel table timetable.xlsx with a schedule of pairs of the format below:
+
+| понедельник |              | date_1                                                                                  |
+|-------------|--------------|----------------------------------------------------------------------------------------------|
+|             | 09:00 -10:35 | < pair_name >: < pair_type_1 >-< pair_number ><br>ауд. < classroom_1 ><br>гр. < groups_1 >   |                                      |
+|             | 10:50 -12:25 | < pair_name >: < pair_type >-< pair_number ><br>ауд. < classroom_2 ><br>гр. < groups_2 >     |                                           |
+|             | 12:40 -14:15 |                                                                                              |
+|             | 15:15 -16:50 | < pair_name >: < pair_type >-< pair_number ><br>ауд. < classroom_1 ><br>гр. < groups_3 >     |                                                       |
+| вторник     |              | date_2                                                                                       |
+|             | 09:00 -10:35 |                                                                                              |
+|             | 10:50 -12:25 |                                                                                              |
+|             | 12:40 -14:15 |                                                                                              |
+|             | 15:15 -16:50 |                                                                                              |
+| среда       |              | date_3                                                                                       |
+|             | 09:00 -10:35 |                                                                                              |
+|             | 10:50 -12:25 | < pair_name >: < pair_type >-< pair_number ><br>ауд. < classroom_2 ><br>гр. < groups_4 >     |
+|             | 12:40 -14:15 |                                                                                              |
+|             | 15:15 -16:50 |                                                                                              |
+| четверг     |              | date_4                                                                                       |
+|             | 09:00 -10:35 |                                                                                              |
+|             | 10:50 -12:25 |                                                                                              |
+|             | 12:40 -14:15 |                                                                                              |
+|             | 15:15 -16:50 |                                                                                              |
+| пятница     |              | date_5                                                                                       |
+|             | 09:00 -10:35 |                                                                                              |
+|             | 10:50 -12:25 |                                                                                              |
+|             | 12:40 -14:15 |                                                                                              |
+|             | 15:15 -16:50 |                                                                                              |
+| суббота     |              | date_6                                                                                       |
+|             | 09:00 -10:35 |                                                                                              |
+|             | 10:50 -12:25 | < pair_name >: < pair_type >-< pair_number ><br>ауд. < classroom_1 ><br>гр. < groups_5 >     |                                                                            |
+|             | 12:40 -14:15 |                                                                                              |
+|             | 15:15 -16:50 |                                                                                              |   
+
+To convert this fragment to json format, you need to run 1 command:
+```
+timetable2json -i timetable.xlsv -o timetable.json
+```
+After executing the command, you will get a file of the format described in the description:
+````javascript
+{
+    "date_1": {
+        "1": [ [<prepod_name>, [<groups_1>], <classroom_1>, <is_computer_class>] ],  
+        "2": [ [<prepod_name>, [<groups_2>], <classroom_2>, <is_computer_class>] ],  
+        "3": [],  
+        "4": [ [<prepod_name>, [<groups_3>], <classroom_1>, <is_computer_class>] ],   
+    },  
+    "date_2": { "1": [], "2": [], "3": [], "4": [] },
+    "date_3": {
+        "1": [],  
+        "2": [ [<prepod_name>, [<groups_4>], <classroom_2>, <is_computer_class>] ],  
+        "3": [],  
+        "4": [],   
+    }  
+    "date_4": { "1": [], "2": [], "3": [], "4": [] },  
+    "date_5": { "1": [], "2": [], "3": [], "4": [] },  
+    "date_6": { "1": [], "2": [], "3": [], "4": [] },  
+    "date_7": {
+        "1": [],  
+        "2": [ [<prepod_name>, [<groups_5>], <classroom_1>, <is_computer_class>] ],  
+        "3": [],  
+        "4": [],   
+    }   
+}
+````
+If there are several sheets in the file, the program will take data from all of them.
+
 
 ## Usage
 
 - ````git clone https://github.com/LeadNess/TimetableExcelParser.git````
-- ````cd TimetableExcelParser````
-- ```python3 setup.py install```
-- ````timetable2json -i <input_excel> -o <output_json> [-ea]````
+- ```pip3 install TimetableExcelParser```
+- ````timetable2json -i <input_excel> [-o <output_json>] [-e] [-l]````
 
 ## Tests
 - **pylint**

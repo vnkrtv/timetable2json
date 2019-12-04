@@ -15,7 +15,11 @@ class TestLesson(unittest.TestCase):
             self.assertEqual(init_value, lesson.get_entry_value())
 
     def test_to_list(self):
-        lists = [['Prepod name', ['7333'], '122', True], ['Prepod name', ['2780.2'], 'КВАНТ-КК', False], []]
+        lists = [
+            ['Prepod name', ['7333'], '122', True],
+            ['Prepod name', ['2780.2'], 'КВАНТ-КК', False],
+            ['Prepod name', [], '', False]
+        ]
         for (l, init_value) in zip(lists, self.init_values):
             lesson = Lesson.cell_parser(init_value)
             self.assertEqual(l, lesson.to_list(prepod_name='Prepod name'))

@@ -13,7 +13,7 @@ class JSONSerializer:
     _names_list = []
 
     @staticmethod
-    def serialize(excel_file):
+    def serialize(excel_file, log_file):
         obj = JSONSerializer()
 
         obj._xl_file = ExcelParser(excel_file)
@@ -28,12 +28,17 @@ class JSONSerializer:
         for date in set(obj._dates):
             obj._date_dict[date] = {i: [] for i in range(1, 5)}
 
-        for prepod_name in obj._names_list:
-            for date in obj._prepods_pairs_dict[prepod_name]:
-                for i, pair in enumerate(obj._prepods_pairs_dict[prepod_name][date]):
-                    pair_list = pair.to_list(prepod_name)
-                    if pair_list:
-                        obj._date_dict[date][i+1].append(pair_list)
+        with open(log_file, 'w') as logs:
+            for prepod_name in obj._names_list:
+                for date in obj._prepods_pairs_dict[prepod_name]:
+                    for i, pair in enumerate(obj._prepods_pairs_dict[prepod_name][date]):
+                        pair_list = pair.to_list(prepod_name)
+                        if pair_list:
+                            # logging the situation with 2 lessons during one pair
+                            if pair.get_entry_value():
+                                obj._date_dict[date][i+1].append(pair_list)
+                            else:
+                                logs.write('Skip %s\n' % pair.get_entry_value())
         return obj
 
     def dump(self, file, ensure_ascii):
