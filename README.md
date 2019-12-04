@@ -64,7 +64,7 @@ We have an excel table timetable.xlsx with a schedule of pairs of the format bel
 
 To convert this fragment to json format, you need to run 1 command:
 ```
-timetable2json -i timetable.xlsv -o timetable.json
+timetable2json -i timetable.xlsx -o timetable.json
 ```
 After executing the command, you will get a file of the format described in the description:
 ````javascript
@@ -83,9 +83,8 @@ After executing the command, you will get a file of the format described in the 
         "4": [],   
     }  
     "date_4": { "1": [], "2": [], "3": [], "4": [] },  
-    "date_5": { "1": [], "2": [], "3": [], "4": [] },  
-    "date_6": { "1": [], "2": [], "3": [], "4": [] },  
-    "date_7": {
+    "date_5": { "1": [], "2": [], "3": [], "4": [] },   
+    "date_6": {
         "1": [],  
         "2": [ [<prepod_name>, [<groups_5>], <classroom_1>, <is_computer_class>] ],  
         "3": [],  
@@ -96,7 +95,7 @@ After executing the command, you will get a file of the format described in the 
 If there are several sheets in the file, the program will take data from all of them.  
 Information about skipped cells will be displayed in the stdout. You can specify logging file by setting the -l flag:
 ```
-timetable2json -i timetable.xlsv -o timetable.json -l logs.txt
+timetable2json -i timetable.xlsx -o timetable.json -l logs.txt
 ```
 
 ## Usage
