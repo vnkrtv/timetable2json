@@ -93,14 +93,17 @@ After executing the command, you will get a file of the format described in the 
     }   
 }
 ````
-If there are several sheets in the file, the program will take data from all of them.
-
+If there are several sheets in the file, the program will take data from all of them.  
+Information about skipped cells will be displayed in the stdout. You can specify logging file by setting the -l flag:
+```
+timetable2json -i timetable.xlsv -o timetable.json -l logs.txt
+```
 
 ## Usage
 
 - ````git clone https://github.com/LeadNess/TimetableExcelParser.git````
 - ```pip3 install TimetableExcelParser```
-- ````timetable2json -i <input_excel> [-o <output_json>] [-e] [-l]````
+- ````timetable2json -i <input_excel> [-o <output_json>] [-l <log_file>] [-e]````
 
 ## Tests
 - **pylint**
