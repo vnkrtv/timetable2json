@@ -53,7 +53,6 @@ def main():
     args = parser.parse_args(sys.argv[1:])
     output = open(args.output, 'w') if args.output else sys.stdout
 
-    logging.basicConfig(filename=args.logs, level=logging.INFO)
     logger = logging.getLogger("timetable2json")
     logger.setLevel(logging.INFO)
 

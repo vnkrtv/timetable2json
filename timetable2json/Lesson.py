@@ -29,8 +29,9 @@ class Lesson:
         lesson._entry_value = pair_str
 
         if len(pair_str.split(':')) != 2:
-            logger = logging.getLogger("cell_parser")
-            logger.info("Skipped %s" % pair_str)
+            if lesson._entry_value:
+                logger = logging.getLogger("cell_parser")
+                logger.info("Skipped %s" % pair_str)
             return lesson
 
         lesson._name, buf = pair_str.split(':')
