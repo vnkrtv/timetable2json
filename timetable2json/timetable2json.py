@@ -55,19 +55,20 @@ def main():
 
     logger = logging.getLogger("timetable2json")
     logger.setLevel(logging.INFO)
-    file_hndl = logging.FileHandler(log_file.name)
-    file_hndl.stream = log_file
+
+    handler = logging.StreamHandler(log_file)
+    handler.stream = log_file
 
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    file_hndl.setFormatter(formatter)
-    logger.addHandler(file_hndl)
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
 
     logging.info("Start parsing %s " % args.input.name)
     JSONSerializer.serialize(excel_file=args.input.name).dump(
         file=output,
         ensure_ascii=not args.ensure_ascii
     )
-    logging.info("Complete parsing % into %s" % (args.input.name, output.name))
+    logging.info("Complete parsing %s into %s" % (args.input.name, output.name))
 
 
 if __name__ == '__main__':
