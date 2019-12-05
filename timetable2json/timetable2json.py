@@ -66,7 +66,7 @@ def main():
         file=output,
         ensure_ascii=not args.ensure_ascii
     )
-    logging.info("Complete parsing %s into %s" % (args.input.name, output.name))
+    logging.info("Complete parsing %s into %s, written logs to %s" % (args.input.name, output.name, args.logs))
 
 
 if __name__ == '__main__':
