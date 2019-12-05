@@ -36,7 +36,7 @@ def create_parser():
     )
     parser.add_argument(
         '-l', '--logs',
-        help='file for logging skipped cells',
+        help='logfile',
     )
     parser.add_argument(
         '-e', '--ensure-ascii',
@@ -55,11 +55,10 @@ def main():
 
     logger = logging.getLogger("timetable2json")
     logger.setLevel(logging.INFO)
-    file_hndl = logging.FileHandler(log_file)
 
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    file_hndl.setFormatter(formatter)
-    logger.addHandler(file_hndl)
+    log_file.setFormatter(formatter)
+    logger.addHandler(log_file)
 
     logging.info("Start parsing %s " % args.input.name)
     JSONSerializer.serialize(excel_file=args.input.name).dump(
