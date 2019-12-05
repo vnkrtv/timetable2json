@@ -61,12 +61,12 @@ def main():
     handler.setFormatter(formatter)
     logger.addHandler(handler)
 
-    logging.info("Start parsing %s " % args.input.name)
+    logger.info("Start parsing %s " % args.input.name)
     JSONSerializer.serialize(excel_file=args.input.name).dump(
         file=output,
         ensure_ascii=not args.ensure_ascii
     )
-    logging.info("Complete parsing %s into %s, written logs to %s" % (args.input.name, output.name, args.logs))
+    print("Complete parsing %s into %s, written logs to %s" % (args.input.name, output.name, args.logs))
 
 
 if __name__ == '__main__':

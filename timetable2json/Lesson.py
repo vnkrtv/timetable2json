@@ -30,7 +30,7 @@ class Lesson:
 
         if len(pair_str.split(':')) != 2:
             if lesson._entry_value:
-                logger = logging.getLogger("cell_parser")
+                logger = logging.getLogger("timetable2json.cell_parser")
                 logger.info("Skipped %s" % pair_str)
             return lesson
 
