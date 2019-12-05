@@ -55,10 +55,7 @@ def main():
 
     logger = logging.getLogger("timetable2json")
     logger.setLevel(logging.INFO)
-
     handler = logging.StreamHandler(log_file)
-    handler.stream = log_file
-
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     handler.setFormatter(formatter)
     logger.addHandler(handler)
