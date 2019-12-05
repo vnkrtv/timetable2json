@@ -51,11 +51,11 @@ def main():
     parser = create_parser()
     args = parser.parse_args(sys.argv[1:])
     output = open(args.output, 'w') if args.output else sys.stdout
-    log_file = open(args.logs, 'w') if args.logs else sys.stdout
 
     logger = logging.getLogger("timetable2json")
     logger.setLevel(logging.INFO)
-    handler = logging.StreamHandler(log_file)
+
+    handler = logging.FileHandler(args.logs.name) if args.logs else logging.StreamHandler(sys.stdout)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     handler.setFormatter(formatter)
     logger.addHandler(handler)
