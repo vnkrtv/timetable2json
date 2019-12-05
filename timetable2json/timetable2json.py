@@ -1,6 +1,7 @@
-# pylint: disable=missing-docstring, line-too-long
+# pylint: disable=missing-docstring, line-too-long, logging-not-lazy
 import sys
 import argparse
+import logging
 from timetable2json.JSONSerializer import JSONSerializer
 
 
@@ -32,12 +33,10 @@ def create_parser():
     parser.add_argument(
         '-o', '--output',
         help='output json file',
-        default=sys.stdout
     )
     parser.add_argument(
         '-l', '--logs',
         help='file for logging skipped cells',
-        default=sys.stdout
     )
     parser.add_argument(
         '-e', '--ensure-ascii',
@@ -51,10 +50,23 @@ def create_parser():
 def main():
     parser = create_parser()
     args = parser.parse_args(sys.argv[1:])
-    JSONSerializer.serialize(excel_file=args.input.name, log_file=args.logs.name).dump(
-        file=args.output,
+    output = open(args.output, 'w') if args.output else sys.stdout
+    log_file = open(args.logs, 'w') if args.logs else sys.stdout
+
+    logger = logging.getLogger("timetable2json")
+    logger.setLevel(logging.INFO)
+    file_hndl = logging.FileHandler(log_file)
+
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    file_hndl.setFormatter(formatter)
+    logger.addHandler(file_hndl)
+
+    logging.info("Start parsing %s " % args.input.name)
+    JSONSerializer.serialize(excel_file=args.input.name).dump(
+        file=output,
         ensure_ascii=not args.ensure_ascii
     )
+    logging.info("Complete parsing % into %s" % (args.input.name, output.name))
 
 
 if __name__ == '__main__':
