@@ -32,11 +32,12 @@ def create_parser():
     )
     parser.add_argument(
         '-o', '--output',
-        help='output json file',
+        help='output json file (default - stdout)',
     )
     parser.add_argument(
         '-l', '--logs',
-        help='logfile',
+        help='logfile (default - logs.txt)',
+        default='logs.txt'
     )
     parser.add_argument(
         '-e', '--ensure-ascii',
@@ -52,17 +53,14 @@ def main():
     args = parser.parse_args(sys.argv[1:])
     output = open(args.output, 'w') if args.output else sys.stdout
 
+    logging.basicConfig(filename=args.logs, level=logging.INFO)
     logger = logging.getLogger("timetable2json")
     logger.setLevel(logging.INFO)
 
-    handler = logging.FileHandler(args.logs) if args.logs else logging.StreamHandler(sys.stdout)
+    handler = logging.FileHandler(args.logs)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     handler.setFormatter(formatter)
     logger.addHandler(handler)
-    logging.basicConfig(
-        filename=handler,
-        level=logging.INFO
-    )
 
     logging.info("Start parsing %s " % args.input.name)
     JSONSerializer.serialize(excel_file=args.input.name).dump(

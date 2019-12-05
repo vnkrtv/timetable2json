@@ -23,7 +23,7 @@ Optional arguments:
     
   ````-i INPUT, --input INPUT```` - input excel file  
   ````-o OUTPUT, --output OUTPUT```` - output json file (default - stdout)  
-  ````-l, --logs```` - logfile (default - stdout)  
+  ````-l, --logs```` - logfile (default - logs.txt)  
   ````-e, --ensure-ascii```` - ensure ascii code instead unicode ("09 января" instead "09 \u044f\u043d\u0432\u0430\u0440\u044f")  
 
 ## Example
