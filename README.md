@@ -1,4 +1,4 @@
-  # TimetableExcelParser
+  # timetable2json
 
 ## Description
 
